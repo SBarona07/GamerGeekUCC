@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerGeek UCC - Tienda Digital de Videojuegos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body style="background-color: #0b071e; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0;">
+
+    <!-- 🌐 BARRA DE NAVEGACIÓN SUPERIOR (CON EL CARRITO RESTAURADO) -->
+    <header style="background-color: #110b29; border-bottom: 2px solid #bc13fe; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);">
+        <div class="navbar-left">
+            <a href="index.html" style="
+    text-decoration: none; 
+    font-size: 24px; 
+    font-weight: 900; 
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #bc13fe 0%, #45f3ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    display: inline-block;
+">GamerGeekUCC</a>
+        </div>
+        
+        <nav style="display: flex; align-items: center; list-style: none; margin: 0; padding: 0;">
+            <li id="nav-biblioteca" style="display: none;"></li>
+            <li id="nav-admin" style="display: none;"></li>
+        </nav>
+
+        <!-- 🚀 AQUÍ ESTÁ TU BARRA DERECHA CON LOS DOS BOTONES REPTICADOS -->
+        <div class="navbar-right" style="display: flex; align-items: center; gap: 15px;">
+            <!-- 🛒 BOTÓN DEL CARRITO RESTAURADO (app.js lo detectará de inmediato) -->
+            <a href="carrito.html" class="nav-link" style="text-decoration: none; color: #ffffff; font-weight: 700; font-size: 16px; background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); padding: 10px 20px; border-radius: 8px; transition: all 0.3s ease;">🛒 Carrito (0)</a>
+            
+            <!-- Botón de Inicio de Sesión -->
+            <a href="login.html" class="nav-link" style="text-decoration: none; color: #ffffff; font-weight: 700; font-size: 16px; background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); padding: 10px 20px; border-radius: 8px; transition: all 0.3s ease;">Iniciar Sesión</a>
+        </div>
+    </header>
+
+    <!-- 🚀 ENCABEZADO PRINCIPAL DE LA TIENDA -->
+    <main style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <section class="hero-section" style="text-align: center; margin-bottom: 50px;">
+            <!-- 🔮 COLOR MORADO ORIGINAL RESTAURADO EN TU TÍTULO -->
+            <h1 style="
+            font-size: 42px; 
+            font-weight: 900; 
+            margin-bottom: 12px; 
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #bc13fe 0%, #45f3ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            display: inline-block;">Descubre tu próxima aventura</h1>
+            <p style="color: #aaaaaa; font-size: 16px; margin: 0;">Los mejores títulos digitales con entrega inmediata y claves de activación globales.</p>
+        </section>
+
+        <!-- 🔍 CONTROLES DE FILTRADO Y BÚSQUEDA GAMER MODERNA Y CENTRADA -->
+        <section class="search-filter-container" style="
+            max-width: 800px; 
+            margin: 0 auto 50px auto; 
+            background: rgba(20, 14, 36, 0.6); 
+            border: 1px solid rgba(188, 19, 254, 0.3); 
+            padding: 22px; 
+            border-radius: 14px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        ">
+            <!-- Caja de Entrada Estilizada Neón -->
+            <div style="position: relative; width: 100%;">
+                <input type="text" id="search-input" placeholder="🔍 Buscar videojuego por título..." style="
+                    width: 100%; 
+                    padding: 14px 22px; 
+                    background: rgba(0, 0, 0, 0.6); 
+                    border: 1px solid #45f3ff; 
+                    border-radius: 30px; 
+                    color: #ffffff; 
+                    font-size: 15px; 
+                    font-weight: 500;
+                    outline: none; 
+                    box-sizing: border-box;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 0 15px rgba(69, 243, 255, 0.15);
+                    letter-spacing: 0.5px;
+                "
+                onfocus="this.style.borderColor='#bc13fe'; this.style.boxShadow='0 0 20px rgba(188, 19, 254, 0.4)';"
+                onblur="this.style.borderColor='#45f3ff'; this.style.boxShadow='0 0 15px rgba(69, 243, 255, 0.15)';"
+                >
+            </div>
+            
+            <!-- Botones de Categoría Redondos Simétricos -->
+            <div class="categories-wrapper" style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 5px;">
+                <span style="color: #45f3ff; font-weight: 800; margin-right: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Categorías:</span>
+                <button onclick="filtrarCatalogoGamer('Todos')" style="background: #bc13fe; color: white; border: none; padding: 8px 18px; border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;">Todos</button>
+                <button onclick="filtrarCatalogoGamer('Acción')" style="background: rgba(69, 243, 255, 0.05); color: #45f3ff; border: 1px solid rgba(69, 243, 255, 0.4); padding: 8px 18px; border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;" onmouseover="this.style.background='rgba(69, 243, 255, 0.15)';" onmouseout="this.style.background='rgba(69, 243, 255, 0.05)';">Acción</button>
+                <button onclick="filtrarCatalogoGamer('Aventura')" style="background: rgba(69, 243, 255, 0.05); color: #45f3ff; border: 1px solid rgba(69, 243, 255, 0.4); padding: 8px 18px; border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;" onmouseover="this.style.background='rgba(69, 243, 255, 0.15)';" onmouseout="this.style.background='rgba(69, 243, 255, 0.05)';">Aventura</button>
+                <button onclick="filtrarCatalogoGamer('RPG')" style="background: rgba(69, 243, 255, 0.05); color: #45f3ff; border: 1px solid rgba(69, 243, 255, 0.4); padding: 8px 18px; border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;" onmouseover="this.style.background='rgba(69, 243, 255, 0.15)';" onmouseout="this.style.background='rgba(69, 243, 255, 0.05)';">RPG</button>
+                <button onclick="filtrarCatalogoGamer('Estrategia')" style="background: rgba(69, 243, 255, 0.05); color: #45f3ff; border: 1px solid rgba(69, 243, 255, 0.4); padding: 8px 18px; border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;" onmouseover="this.style.background='rgba(69, 243, 255, 0.15)';" onmouseout="this.style.background='rgba(69, 243, 255, 0.05)';">Estrategia</button>
+                <button onclick="filtrarCatalogoGamer('Deportes')" style="background: rgba(69, 243, 255, 0.05); color: #45f3ff; border: 1px solid rgba(69, 243, 255, 0.4); padding: 8px 18px; border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;" onmouseover="this.style.background='rgba(69, 243, 255, 0.15)';" onmouseout="this.style.background='rgba(69, 243, 255, 0.05)';">Deportes</button>
+            </div>
+        </section>
+
+        <!-- 🎮 SECCIÓN DEL CATÁLOGO DE TARJETAS -->
+        <section class="catalog-section">
+            <h2 style="font-size: 22px; font-weight: 800; border-left: 4px solid #bc13fe; padding-left: 12px; margin-bottom: 30px; letter-spacing: 0.5px; text-transform: uppercase;">Todos los Videojuegos</h2>
+            
+            <div id="games-container" class="games-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 100fr)); gap: 30px;">
+                <p class="text-muted" style="color: #aaaaaa; grid-column: 1 / -1; text-align: center; padding: 20px;">Cargando catálogo desde el servidor técnico...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: #080516; border-top: 1px solid rgba(188, 19, 254, 0.2); padding: 20px; text-align: center; color: #777777; font-size: 13px; margin-top: 60px;">
+        <p style="margin: 0;">&copy; 2026 GamerGeek UCC- Proyecto Universitario Full-Stack. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+<!-- 🎛️ WIDGET DE TELEMETRÍA Y NOTICIAS GAMER INTERACTIVO (FLOTANTE CYBERPUNK) -->
+<<div class="gamer-news-widget" style="
+    width: 330px; 
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    background: rgba(11, 7, 28, 0.96); 
+    border: 2px solid #bc13fe; 
+    border-radius: 12px; 
+    padding: 15px; 
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.4); 
+    z-index: 9999;
+">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(69, 243, 255, 0.3); padding-bottom: 8px;">
+        <h3 style="color: #ffffff; margin: 0; font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; font-family: inherit;">
+            <span>📊</span> Live Analytics UCC
+        </h3>
+        <span style="background: #45f3ff; color: #110b29; font-size: 9px; padding: 2px 6px; border-radius: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit;">NATIVE API</span>
+    </div>
+
+    <div id="noticias-container" style="max-height: 320px; overflow-y: auto; padding-right: 5px; font-family: inherit;">
+        <p style="color: #aaaaaa; font-size: 12px; text-align: center; margin: 20px 0;">Sincronizando con FastAPI...</p>
+    </div>
+</div>
+</html>
+

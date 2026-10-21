@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerGeek UCC - Panel de Administración</title>
+    <style>
+        /* Paleta Oscura Gamer unificada con tus estilos */
+        body {
+            background-color: #0b0c10;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* BARRA DE NAVEGACIÓN IDÉNTICA A TU CAPTURA */
+        .navbar {
+            background-color: #0b0c10; /* Color oscuro base */
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #6f42c1; /* Línea de neón morada de tu foto */
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #6f42c1; /* El "UCC" morado de tu foto */
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+        .navbar a {
+            color: #a8b2c1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        /* Color morado activo de tu captura */
+        .navbar a:hover, .navbar a.active {
+            color: #6f42c1; 
+        }
+
+        /* CONTENEDOR CENTRAL DEL FORMULARIO */
+        .admin-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        .admin-box {
+            background-color: #1f2833;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(111, 66, 193, 0.25);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #6f42c1;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* CAMPOS DEL FORMULARIO */
+        .form-control {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4ac8ee;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333f4d;
+            background-color: #0b0c10;
+            color: #ffffff;
+            border-radius: 5px;
+            box-sizing: border-box;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #6f42c1;
+            box-shadow: 0 0 8px rgba(111, 66, 193, 0.4);
+        }
+        textarea {
+            resize: vertical;
+            height: 90px;
+        }
+        .admin-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #6f42c1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+        .admin-btn:hover {
+            background-color: #5a32a3;
+            box-shadow: 0 0 15px rgba(111, 66, 193, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN ORIGINAL ACTUALIZADA -->
+    <header class="navbar">
+        <div class="logo">GamerGekk<span>UCC</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Tienda</a></li>
+                <li><a href="biblioteca.html">Mi Biblioteca</a></li>
+                <li id="nav-admin" style="display: none;"><a href="admin.html" class="active">Panel Admin</a></li>
+                <!-- El botón con el disparador de salida real hacia el app.js -->
+                <li><a href="#" onclick="cerrarSesionGamer()" style="color: #ff4d4d;">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- FORMULARIO TÉCNICO CRUD -->
+    <div class="admin-wrapper">
+        <main class="admin-box">
+            <h2>Panel Admin</h2>
+            <div class="subtitle">Módulo de Inserción Base de Datos (Supabase)</div>
+            
+            <form id="admin-form" style="display: flex; flex-direction: column; gap: 15px;">
+    
+    <!-- Título del Juego -->
+    <div class="form-group">
+        <label for="admin-titulo" style="color: #45f3ff; font-weight: bold; display: block; margin-bottom: 5px; font-size: 14px;">Título del Videojuego:</label>
+        <input type="text" id="admin-titulo" placeholder="Ej: Age of Empires IV" required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #bc13fe; border-radius: 4px; color: white; outline: none; box-sizing: border-box;">
+    </div>
+
+    <!-- Categoría -->
+    <div class="form-group">
+        <label for="admin-categoria" style="color: #45f3ff; font-weight: bold; display: block; margin-bottom: 5px; font-size: 14px;">Categoría / Género:</label>
+        <select id="admin-categoria" required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #bc13fe; border-radius: 4px; color: white; outline: none; box-sizing: border-box;">
+            <option value="Acción">Acción</option>
+            <option value="Aventura">Aventura</option>
+            <option value="RPG">RPG</option>
+            <option value="Estrategia" selected>Estrategia</option>
+            <option value="Deportes">Deportes</option>
+        </select>
+    </div>
+
+    <!-- 🚀 Plataforma (Sincronizado) -->
+    <div class="form-group">
+        <label style="color: #45f3ff; font-weight: bold; display: block; margin-bottom: 5px; font-size: 14px;">Plataforma / Consola:</label>
+        <input type="text" id="admin-plataforma" placeholder="Ej: PC, PS5, Xbox, Switch" required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #bc13fe; border-radius: 4px; color: white; outline: none; box-sizing: border-box;">
+    </div>
+
+    <!-- Precio -->
+    <div class="form-group">
+        <label for="admin-precio" style="color: #45f3ff; font-weight: bold; display: block; margin-bottom: 5px; font-size: 14px;">Precio del Título (USD):</label>
+        <input type="number" step="0.01" id="admin-precio" placeholder="Ej: 29.99" required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #bc13fe; border-radius: 4px; color: white; outline: none; box-sizing: border-box;">
+    </div>
+
+    <!-- 🚀 Stock (ID Sincronizado para app.js) -->
+    <div class="form-group">
+        <label for="admin-stock" style="color: #45f3ff; font-weight: bold; display: block; margin-bottom: 5px; font-size: 14px;">Stock Inicial (Claves digitales):</label>
+        <input type="number" id="admin-stock" placeholder="Ej: 15" required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #bc13fe; border-radius: 4px; color: white; outline: none; box-sizing: border-box;">
+    </div>
+
+    <!-- 🚀 URL de la Portada (ID Sincronizado para app.js) -->
+    <div class="form-group">
+        <label for="admin-imagen" style="color: #45f3ff; font-weight: bold; display: block; margin-bottom: 5px; font-size: 14px;">URL de la Portada del Juego:</label>
+        <input type="url" id="admin-imagen" placeholder="Pega el enlace de la imagen de portada" required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #bc13fe; border-radius: 4px; color: white; outline: none; box-sizing: border-box;">
+    </div>
+
+    <!-- Descripción -->
+    <div class="form-group">
+        <label for="admin-descripcion" style="color: #45f3ff; font-weight: bold; display: block; margin-bottom: 5px; font-size: 14px;">Descripción o Sinopsis Técnica:</label>
+        <textarea id="admin-descripcion" rows="3" placeholder="Escribe una sinopsis corta del juego..." required style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid #bc13fe; border-radius: 4px; color: white; outline: none; box-sizing: border-box; resize: none; font-family: inherit;"></textarea>
+    </div>
+
+    <!-- Botón de Envío Interactivo -->
+    <button type="submit" style="width: 100%; background: linear-gradient(135deg, #bc13fe 0%, #700fff 100%); color: white; border: none; padding: 12px; font-size: 15px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 10px; transition: 0.3s;" onmouseover="this.style.opacity='0.9';" onmouseout="this.style.opacity='1';">
+        💾 Guardar en la Nube de Supabase
+    </button>
+</form>
+        </main>
+    </div>
+
+    <!-- CONEXIÓN AL ARCHIVO MANEJADOR DE JAVASCRIPT -->
+    <script src="js/app.js"></script>
+</body>
+</html>
